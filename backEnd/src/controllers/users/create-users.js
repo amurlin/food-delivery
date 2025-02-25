@@ -6,5 +6,5 @@ export const createUser = async (req, res) => {
 
     const newUser = await Users.create({...req.body, password: hashPassword});
 
-    res.json({message: "User crewated successfully!", newUser});
+    res.json({message: "User created successfully!", newUser});
 }
