@@ -1,9 +1,9 @@
-import { Users } from "../../models/user.schema.js";
+import { UserModel } from "../../models/user.schema.js";
 
 export const deleteUser = async (req, res) => {
     const {id} = req.params;
 
-    const deletedUser = await Users.findByIdAndDelete(id);
+    const deletedUser = await UserModel.findByIdAndDelete(id);
     if (!deletedUser) {
         res.json({message: "user noy found"});
     } 
