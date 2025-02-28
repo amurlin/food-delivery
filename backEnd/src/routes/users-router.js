@@ -5,7 +5,7 @@ import { getUsers } from "../controllers/users/get-all-users.js";
 import { createUser } from "../controllers/users/create-users.js";
 import { deleteUser } from "../controllers/users/delete-users.js";
 import { authorizationMiddleware } from "../middleware/authorazation.js";
-import { validateEmailMiddleware } from "../middleware/validateEmail.js";
+import { validateEmailMiddleware } from "../middleware/validate-email.js";
 
 export const userRouter = express.Router();
 

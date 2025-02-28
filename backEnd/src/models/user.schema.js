@@ -13,7 +13,8 @@ const userSchema = new Schema(
         defualt: "USER",
     },
     orderedFoods: {type: [Schema.Types.ObjectId], ref: "Orders", default: []},
-    name: {type: String},
+    createdAt: { type: Date, default: new Date() },
+    updatedAt: { type: Date, default: new Date() },
   },
   {
     timestamps: true,

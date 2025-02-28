@@ -6,12 +6,14 @@ const foodSchema = new Schema(
     foodName: {type: String},
     price: {type: Number},
     image: {type: String},
-    ingredients: {type: String},
-    category: {type: Schema.Types.ObjectId}
+    ingredients: {type: [String]},
+    category: {type: [Schema.Types.ObjectId], ref: "foodCategory", default:[]},
+    createdAt: { type: Date, default: new Date() },
+    updatedAt: { type: Date, default: new Date() },
   },
   {
     timestamps: true,
   }
 );
 
-export const Foods = model.Foods || model("Foods", foodSchema);
+export const FoodModel = model.FoodModel || model("Foods", foodSchema);
