@@ -1,10 +1,11 @@
 import express from "express";
 import dotenv from "dotenv" ;
-import { userRouter } from "./routes/users-router.js";
-import { foodRouter } from "./routes/foods-router.js";
-import { orderRouter } from "./routes/orders-router.js";
+import { userRouter } from "./routers/users-router.js";
+import { foodRouter } from "./routers/foods-router.js";
+import { orderRouter } from "./routers/foodOrders-router.js";
 import { connectToDatabase } from "./database/index.js";
-import { categoryRouter } from "./routes/foodCategory-router.js";
+import { categoryRouter } from "./routers/foodCategory-router.js";
+// import { orderItemRouter } from "./routers/foodOrderItem-router.js";
 
 const app = express()
 dotenv.config()
@@ -16,8 +17,9 @@ console.log(process.env.MONGO_CONNECTION_STRING);
 app.use(express.json());
 app.use("/food", foodRouter);
 app.use("/users", userRouter);
-app.use("/order", orderRouter);
-app.use('/category', categoryRouter);
+app.use("/food-order", orderRouter);
+app.use("/food-category", categoryRouter);
+// app.use("/food-order-item", orderItemRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

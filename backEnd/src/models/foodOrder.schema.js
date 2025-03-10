@@ -1,6 +1,6 @@
 import { Schema, model} from "mongoose";
 
-const orderSchema = new Schema(
+const foodOrderSchema = new Schema(
   {
     id: {type: Schema.Types.ObjectId},
     user: {type: Schema.Types.ObjectId, ref: "Users"},
@@ -17,4 +17,4 @@ const orderSchema = new Schema(
   }
 );
 
-export const Orders = model.Orders || model("Orders", orderSchema);
+export const OrderModel = model.OrderModel || model("Orders", foodOrderSchema);
