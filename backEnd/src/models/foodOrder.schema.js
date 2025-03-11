@@ -4,14 +4,14 @@ const foodOrderSchema = new Schema(
   {
     id: {type: Schema.Types.ObjectId},
     user: {type: Schema.Types.ObjectId, ref: "Users"},
-    totalPrice: {type: Number},
+    totalPrice: {type: Number, required: true},
     foodOrderItems: {type:[Schema.Types.ObjectId], ref: "Foods", quanity: Number, default:[] },
     status: {
         type: String,
         enum: ["PENDING", "CANCELED", "DELIVERED"],
         defualt: "PENDING",
     }
-  },
+  }, 
   {
     timestamps: true,
   }

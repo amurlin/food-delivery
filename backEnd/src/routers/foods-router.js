@@ -7,6 +7,6 @@ import { deleteFood } from "../controllers/foods/delete-food.js";
 export const foodRouter = express.Router();
 
 foodRouter.put("/:foodId", putFood);
-foodRouter.get("/:foodId", getFoods);
+foodRouter.get("/", getFoods);
 foodRouter.post("/", createFood);
 foodRouter.delete("/:foodId", deleteFood);
