@@ -1,6 +1,10 @@
-// import { FoodOrderItemModel } from "../../models/foodOrderItem.schema.js";
+import { FoodOrderItemModel } from "../../models/foodOrderItem.schema.js";
 
-// export const getOrderItem = async (req, res) => {
-//     const allOrderItems = await FoodOrderItemModel.find()
-//     res.json({message: "all orders:", allOrderItems})
-// }
+export const getFoodOrderItem = async (req, res) => {
+    try {
+      const items = await FoodOrderItemModel.find().populate("foodOrder").populate("food");
+      res.json(items);
+    } catch (error) {
+      res.json({ message: "Server error", error });
+    }
+  };

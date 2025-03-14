@@ -5,7 +5,7 @@ import { foodRouter } from "./routers/foods-router.js";
 import { orderRouter } from "./routers/foodOrders-router.js";
 import { connectToDatabase } from "./database/index.js";
 import { categoryRouter } from "./routers/foodCategory-router.js";
-// import { orderItemRouter } from "./routers/foodOrderItem-router.js";
+import { foodOrderItemRouter } from "./routers/foodOrderItem-router.js";
 
 const app = express()
 dotenv.config()
@@ -19,8 +19,10 @@ app.use("/food", foodRouter);
 app.use("/users", userRouter);
 app.use("/food-order", orderRouter);
 app.use("/food-category", categoryRouter);
-// app.use("/food-order-item", orderItemRouter);
+app.use("/foodOrderItem", foodOrderItemRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+ 

@@ -1,8 +1,14 @@
-// import { FoodOrderItemModel } from "../../models/foodOrderItem.schema.js";
+ import {FoodOrderItemModel} from "../../models/foodOrderItem.schema.js"
 
-// export const createOrderItem = async (req, res) => {
-//     const { quanity, food } = req.body;
-//     const newOrderItem = await FoodOrderItemModel.create(quanity, foods);
-
-//     res.json({message: "User created successfully!", newOrderItem });
-// }
+export const createFoodOrderItem = async (req, res) => {
+  try {
+    const { food, quantity } = req.body; //foodOrder, price
+ 
+    const newItem = await new FoodOrderItemModel({ food, quantity});
+    await newItem.save();
+ 
+    res.json(newItem);
+  } catch (error) {
+    res.json({ message: "Server error", error });
+  }
+};

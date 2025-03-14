@@ -1,17 +1,19 @@
-import { Schema, model} from "mongoose";
-
+import { Schema, model } from "mongoose";
+ 
 const foodOrderSchema = new Schema(
   {
     id: {type: Schema.Types.ObjectId},
-    user: {type: Schema.Types.ObjectId, ref: "Users"},
-    totalPrice: {type: Number, required: true},
-    foodOrderItems: {type:[Schema.Types.ObjectId], ref: "Foods", quanity: Number, default:[] },
+    user: { type: Schema.Types.ObjectId, ref: "Users" },
+    totalPrice: { type: Number, ref: "Foods", required: true },
+    foodOrderItem: [
+      { type: Schema.Types.ObjectId, ref: "FoodOrderItem", quantity: { type: Number } },
+    ],
     status: {
-        type: String,
-        enum: ["PENDING", "CANCELED", "DELIVERED"],
-        defualt: "PENDING",
-    }
-  }, 
+      type: String,
+      enum: ["PENDING", "CANCELED", "DELIVERED"],
+      default: "PENDING",
+    },
+  },
   {
     timestamps: true,
   }

@@ -5,5 +5,5 @@ export const putCategory = async (req, res) => {
 
     const  updatedCategory = await FoodCategoryModel.findByIdAndUpdate(id, req.body, {new: true})
 
-    res.json({message: "category updated"})
+    res.json({message: "category updated", updatedCategory})
 }
