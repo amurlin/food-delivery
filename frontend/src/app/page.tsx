@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [message, setMessage] = useState("");
   const getMessage = async () => {
-    const res = await axios.get("http://localhost:8000/");
+    const res = await axios.get("https://backend-s81tulv63-amurlins-projects.vercel.app/");
     setMessage(res.data);
     console.log(res);
   }
