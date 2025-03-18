@@ -16,7 +16,7 @@ export default function Home() {
     },[]);
 
   return (
-  <div>
+  <div className="bg-[white]">
     <p> hello </p>
     <p>{message}</p>
   </div>
