@@ -11,6 +11,7 @@ import { foodOrderItemRouter } from "./routers/foodOrderItem-router.js";
 const app = express();
 dotenv.config();
 connectToDatabase();
+const cors = require('cors')
 app.use(cors({
   origin: 'http://localhost:3000', // Frontend апп-ийг ажиллаж буй хаяг
   methods: ['GET', 'POST'], // Хэрэглэх арга
