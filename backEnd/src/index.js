@@ -11,7 +11,10 @@ import { foodOrderItemRouter } from "./routers/foodOrderItem-router.js";
 const app = express();
 dotenv.config();
 connectToDatabase();
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000', // Frontend апп-ийг ажиллаж буй хаяг
+  methods: ['GET', 'POST'], // Хэрэглэх арга
+}));
 
 const port = 8000;
 console.log(process.env.MONGO_CONNECTION_STRING);
