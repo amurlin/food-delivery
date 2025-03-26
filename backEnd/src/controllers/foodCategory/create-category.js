@@ -1,8 +1,12 @@
 import { FoodCategoryModel } from "../../models/foodCategory.schema.js";
 
-export const createCategory = async (req, res) => {
-    const { categoryName } = req.body;
-    const  newCategory = await FoodCategoryModel.create({categoryName});
-    
-    res.json({message: "Category created successfully!", newCategory});
-}
+export const createCategory = async (categoryName) => {
+    const categoryExists = await FoodCategoryModel.findOne({ categoryName });
+
+    if (!categoryExists) {
+        const newCategory = await FoodCategoryModel.create({ categoryName });
+        return newCategory;
+    } else {
+        return categoryExists;
+    }
+};

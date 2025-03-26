@@ -1,35 +1,46 @@
-"use client";
+"use client"; // Next.js-ийн client component болохыг зааж өгнө
 
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import { CategoryType } from "@/lib/types";
+import axios from "axios"; // HTTP хүсэлт хийхэд ашиглана
 
-type Params = {
- id: string;
- name: string;
- price: number;
-}
+const Category = () => {
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [loading, setLoading] = useState(true);
 
-export default function CategoryDetail({ params }: { params: Params }) {
- const [products, setProducts] = useState<Params[]>([]);
- useEffect(() => {
-   fetch(`https://yourapi.com/api/categories/${params.id}/products`)
-     .then((res) => res.json())
-     .then((data) => setProducts(data))
-     .catch((err) => console.error("Алдаа:", err));
- }, [params.id]);
- return (
-<div className="p-6">
-<h1 className="text-2xl font-bold mb-4">Foods</h1>
-     {products.length === 0 ? (
-<p>Энэ категорид бүтээгдэхүүн алга.</p>
-     ) : (
-<ul>
-         {products.map((product) => (
-<li key={product.id} className="mb-2">
-             {product.name} - {product.price}₮
-</li>
-         ))}
-</ul>
-     )}
-</div>
- );
-}
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/categories"); // API линкээ оруулна
+        setCategories(response.data);
+      } catch (error) {
+        console.error("Категори татахад алдаа гарлаа:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  if (loading) {
+    return <p className="text-center text-gray-500">Түр хүлээнэ үү...</p>;
+  }
+
+  return (
+    <div className="flex gap-4 overflow-x-auto p-4">
+      {categories.map((category) => (
+        <div
+          key={category.id}
+          className="flex flex-col items-center gap-2 bg-gray-100 p-3 rounded-lg cursor-pointer hover:bg-gray-200 transition"
+        >
+          <Image src={category.icon} alt={category.name} width={50} height={50} />
+          <p className="text-sm font-medium">{category.name}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Category;
