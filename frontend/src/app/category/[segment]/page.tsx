@@ -1,9 +1,9 @@
-"use client"; // Next.js-ийн client component болохыг зааж өгнө
+"use client";
 
-import React, { useEffect, useState } from "react";
+import axios from "axios"; 
 import Image from "next/image";
 import { CategoryType } from "@/lib/types";
-import axios from "axios"; // HTTP хүсэлт хийхэд ашиглана
+import React, { useEffect, useState } from "react";
 
 const Category = () => {
   const [categories, setCategories] = useState<CategoryType[]>([]);
@@ -12,7 +12,7 @@ const Category = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/categories"); // API линкээ оруулна
+        const response = await axios.get("http://localhost:8000/category"); // API линкээ оруулна
         setCategories(response.data);
       } catch (error) {
         console.error("Категори татахад алдаа гарлаа:", error);
@@ -25,7 +25,7 @@ const Category = () => {
   }, []);
 
   if (loading) {
-    return <p className="text-center text-gray-500">Түр хүлээнэ үү...</p>;
+    return <p className="text-center text-gray-500">Loading...</p>;
   }
 
   return (

@@ -16,16 +16,18 @@ export const fetchFoods= async (): Promise<FoodType[]> => {
     }
   };
 
-// fetch categories 
-export const fetchCategories= async (): Promise<CategoryType[]> => {
+export const fetchCategories = async () => {
   try {
-    const response = await axios.get(`${API_URL}/food-category`);
-    console.log("Fetched Foods:", response.data); 
-    return response.data; 
+    const response = await fetch("http://localhost:8000/food-category");
+    if (!response.ok) {
+      throw new Error("Failed to fetch categories");
+    }
+    return await response.json();
   } catch (error) {
     console.error("Error fetching categories:", error);
-    return []; 
+    return [];
   }
 };
+
 
 
